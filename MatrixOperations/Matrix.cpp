@@ -35,6 +35,9 @@ std::string Matrix<T>::toString() const
 
 	int rows = _internalMatrix.size();
 	int cols = _internalMatrix[0].size();
+	int pad = 4;
+
+	sStream << "\n /" << std::string(cols * pad, ' ') << " \\\n";
 
 	for (size_t i = 0; i < rows; i++)
 	{
@@ -42,11 +45,13 @@ std::string Matrix<T>::toString() const
 
 		for (size_t j = 0; j < cols; j++)
 		{
-			sStream << std::setw(4) << _internalMatrix[j][i] << " ";
+			sStream << std::setw(pad) << _internalMatrix[j][i] << " ";
 		}
 
 		sStream << "|" << std::endl;
 	}
+
+	sStream << " \\" << std::string(cols * pad, ' ') << " /\n";
 
 	return sStream.str();
 }
